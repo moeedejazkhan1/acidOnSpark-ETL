@@ -1,65 +1,58 @@
-# AcidOnSpark-ETL
-Watch about it here:
-## [youtube](https://www.youtube.com/watch?v=C4UiqIc_gWA)
-Read about it here:
-## [medium](https://sdamoosavi.medium.com/doing-acid-on-spark-6ef54f3d1a8d)
+# 🚀 AcidOnSpark-ETL
 
-## Technologies
-The main technologies are:
-* Python3
-* Docker
-* Spark
-* Airflow
-* MinIo
-* DeltaTable
-* Hive
-* Mariadb
-* Presto
-* Superset
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)
+![Docker](https://img.shields.io/badge/Docker-Ready-blue?logo=docker)
+![Spark](https://img.shields.io/badge/Apache%20Spark-ETL-orange?logo=apachespark)
+![Airflow](https://img.shields.io/badge/Apache%20Airflow-Orchestration-brightgreen?logo=apacheairflow)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-## How is it work?
-I this section each part of this ETL pipeline will be illustrated:
-### Spark
-Spark is used to read and write data in distributed and scalable manner.
-```bash
-make spark
-```
-will run spark master and one instance of worker
-```bash
-make scale-spark
-```
-will scale spark worker.
-### Airflow
-One of the best workflow managemnet for spark jobs.
-```bash
-make airflow
-```
-### MinIo
-An opensource, distributed and performant object storage for datalake files and hive tables.
-```bash
-make minio
-```
-### DeltaTable (Deltalake)
-An opensource columnar parquet files formats with snappy compression. Delta supports update and delete, which is very nice. All necessary jar files for supporting delta and s3 objects are added to hive and spark docker images.
-### Hive and Mariadb
-In order to create tables to run Spark SQL on delta tables, spark needs hive metastore and hive needs mariadb as metastoreDb. Mariadb is also used for data warehouse for to run query faster and create dashboards.
-```bash
-make hive
-```
-It will create hive and mariadb instances.
+A **modern ETL pipeline** that combines the power of **Spark, Airflow, MinIO, Delta Lake, Hive, Presto, and Superset** into a fully containerized data ecosystem.  
+Built for **scalable, fault-tolerant, and analytics-ready workflows**.  
 
-### Presto
-In order to have acces to delta tables without spark, presto is going to be employed as distributed query engine. It works with superset and hive tables. Presto is opensource, scalable and it can connect to any databases.
+📖 Learn more here:  
+👉 [Doing ACID on Spark (Medium)]
+
+---
+
+## ⚡️ Features
+
+- End-to-End ETL pipeline – from ingestion to visualization  
+- Fully containerized using Docker  
+- Horizontally scalable with Spark & Presto  
+- ACID-compliant storage with Delta Lake  
+- SQL-ready via Hive Metastore + Presto  
+- Interactive dashboards with Superset  
+
+---
+
+## 🛠️ Tech Stack
+
+🐍 Python 3 · 🐳 Docker · 🔥 Apache Spark · 🌬 Airflow · 📦 MinIO  
+🗂 Delta Lake · 🐝 Hive · 🐬 MariaDB · ⚡ Presto · 📊 Superset  
+
+---
+
+## 🔧 How It Works
+
+All components are containerized and can be started with simple `make` commands:
+
 ```bash
-make presto-cluster
-```
-By this command will create a presto coordinator and worker, the worker can scale horizontally. In order to query delta tables using presto:
-```bash
-make presto-cli
-```
-In presto-cli just like spark sql, any query can be run.
-### Superset
-Superset is opensource, supports any databases with many dashbord styles also famous in tech in order to create dashboards or to get hands on databases.
-```bash
-make superset
-```
+# 🔥 Spark
+make spark        # Launch Spark master + one worker
+make scale-spark  # Scale Spark workers horizontally
+
+# 🌬 Airflow
+make airflow      # Launch Airflow for workflow orchestration
+
+# 📦 MinIO
+make minio        # Start S3-compatible storage for data lake & Hive tables
+
+# 🗂 Hive + 🐬 MariaDB
+make hive         # Launch Hive Metastore + MariaDB as metastore DB
+
+# ⚡ Presto
+make presto-cluster  # Launch Presto coordinator + worker(s)
+make presto-cli      # Open interactive Presto SQL CLI
+
+# 📊 Superset
+make superset     # Launch Superset for dashboards & BI
